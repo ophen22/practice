@@ -1,13 +1,22 @@
 let fs = require('fs');
 let input = fs.readFileSync('input.txt').toString().split('\n');
+var answer = 0;
 
-let line = input[0].split(' ');
-let a = Number(line[0]);
-let b1 = Number(line[1][2]);
-let b2 = Number(line[1][1]);
-let b3 = Number(line[1][0]);
+let dice1 = Number(input[0].split(' ')[0]);
+let dice2 = Number(input[0].split(' ')[1]);
+let dice3 = Number(input[0].split(' ')[2]);
 
-console.log(a*b1);
-console.log(a*b2);
-console.log(a*b3);
-console.log(a*b1 + a*b2*10 + a*b3*100);
+// 3개
+if (dice1 === dice2 && dice2 === dice3) {
+  answer = 10000 + dice1*1000;
+} else if (dice1 === dice2) {
+  answer = 1000 + dice1 * 100;
+} else if (dice2 === dice3) {
+  answer = 1000 + dice2 * 100;
+} else if (dice1 === dice3) {
+  answer = 1000 + dice1 * 100;
+} else {
+  answer = Math.max(dice1, dice2, dice3) * 100;
+}
+// 1개
+console.log(answer)
